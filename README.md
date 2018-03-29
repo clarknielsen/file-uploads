@@ -1,1 +1,1 @@
-# file-uploads
+## Small example of storing images in a database as raw buffers.
