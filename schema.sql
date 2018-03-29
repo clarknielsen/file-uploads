@@ -6,7 +6,7 @@ CREATE TABLE images (
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   name VARCHAR(255),
   type VARCHAR(10),
-  src BLOB
+  src MEDIUMBLOB
 );
 
 DESCRIBE images;

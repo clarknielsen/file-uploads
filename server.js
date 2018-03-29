@@ -11,8 +11,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(fileUpload());
 
-app.use(express.static("uploads"));
-
 // connect to mysql
 var connection = mysql.createConnection({
   host: "localhost",
@@ -49,7 +47,7 @@ app.get("/images", function(req, res) {
 
     // for each image, create an img tag
     for (var i = 0; i < results.length; i++) {
-      html += "<img src='data:" + results[i].type + ";base64," + results[i].src.toString("base64") + "' />";
+      html += `<img src="data:${results[i].type};base64,${results[i].src.toString("base64")}" alt="${results[i].name}" title="${results[i].name}" />`;
     }
 
     res.send(html);
