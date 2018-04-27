@@ -1,4 +1,5 @@
 var mysql = require("mysql");
+var path = require("path");
 var express = require("express");
 var bodyParser = require("body-parser");
 var fileUpload = require('express-fileupload');
@@ -52,6 +53,11 @@ app.get("/images", function(req, res) {
 
     res.send(html);
   });
+});
+
+app.get("/ajax-test", function(req, res) {
+  // send html file where we will test uploads with ajax
+  res.sendFile(path.join(__dirname, "./test.html"));
 });
 
 app.post("/", function(req, res) {

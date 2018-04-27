@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ajax Uploads</title>
+
+  <!-- axios is a library for making ajax calls -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+</head>
+<body>
+
+  <form id="formy">
+    <input id="myName" type='text' name='myName' />
+    <input id="myUpload" type='file' name='myUpload' /> 
+    <input type='submit' value='Submit' /> 
+  </form>
+
+  <script>
+    // form is submitted
+    document.getElementById("formy").onsubmit = function(event) {
+      event.preventDefault();
+
+      // convert input data to "form" data
+      var formData = new FormData();
+
+      formData.append("myName", document.getElementById("myName").value);
+      formData.append("myUpload", document.getElementById("myUpload").files[0]);
+
+      // make ajax call with axios
+      axios({
+        url: "/",
+        method: "POST",
+        data: formData,
+         headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function() {
+        // redirect
+        location.replace("/images");
+      });
+    };
+  </script>
+
+</body>
+</html>
