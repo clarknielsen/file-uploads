@@ -31,14 +31,13 @@ connection.connect(function(err) {
 });
 
 app.get("/", function(req, res) {
-  // send html form with encoding type attr
-  res.send(`
-    <form method='POST' action='/' encType='multipart/form-data'>
-      <input type='text' name='myName' />
-      <input type='file' name='myUpload' /> 
-      <input type='submit' value='Submit' /> 
-    </form>
-  `);
+  // send html file where we will test uploads with forms
+  res.sendFile(path.join(__dirname, "./home.html"));
+});
+
+app.get("/ajax-test", function(req, res) {
+  // send html file where we will test uploads with ajax
+  res.sendFile(path.join(__dirname, "./ajax.html"));
 });
 
 app.get("/images", function(req, res) {
@@ -51,13 +50,9 @@ app.get("/images", function(req, res) {
       html += `<img src="data:${results[i].type};base64,${results[i].src.toString("base64")}" alt="${results[i].name}" title="${results[i].name}" />`;
     }
 
+    // send html content to browser
     res.send(html);
   });
-});
-
-app.get("/ajax-test", function(req, res) {
-  // send html file where we will test uploads with ajax
-  res.sendFile(path.join(__dirname, "./test.html"));
 });
 
 app.post("/", function(req, res) {
@@ -72,6 +67,7 @@ app.post("/", function(req, res) {
   }, function(err) {
     if (err) throw err;
 
+    // redirect browser to images route/url
     res.redirect("/images");
   });
 });

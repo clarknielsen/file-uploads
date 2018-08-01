@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ajax Uploads</title>
+</head>
+<body>
+
+  <!-- form will post directly to back-end. because of "encType," file uploads will be posted as well. -->
+  <form method="POST" action="/" encType="multipart/form-data">
+    <input type='text' name='myName' />
+    <input type='file' name='myUpload' /> 
+    <input type='submit' value='Submit' /> 
+  </form>
+
+</body>
+</html>
